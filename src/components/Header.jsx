@@ -7,6 +7,7 @@ export default function Header() {
   const path = useLocation().pathname;
   return (
     <Navbar className="border-b-2 px-3">
+      {/* Logo */}
       <div>
         <Link to={"/"} className="text-3xl ml-4 font-semibold">
           <span className="text-green-700">E</span>
@@ -15,11 +16,12 @@ export default function Header() {
       </div>
       <div>
         <TextInput
-          placeholder="search products..."
+          placeholder="Search Product..."
           icon={AiOutlineSearch}
           className="hidden lg:block"
         />
       </div>
+      {/* hamburger */}
       <div className="lg:hidden">
         <Navbar.Toggle />
       </div>
@@ -60,7 +62,7 @@ export default function Header() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-6 h-6 block"
               >
