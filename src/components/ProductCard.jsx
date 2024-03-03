@@ -1,11 +1,8 @@
 import { Button, Card } from "flowbite-react";
 import { Link } from "react-router-dom";
 
-export default function ProductCard({ title, price, image,id }) {
+export default function ProductCard({ id,title, price, image,addProductToCart }) {
 
-    const handleClick=(e)=>{
-            console.log(e);
-    }
   return (
     <Card className="max-w-sm">
 
@@ -18,7 +15,7 @@ export default function ProductCard({ title, price, image,id }) {
         <h1>${price}</h1>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <Button className="bg-green-700" onClick={handleClick}>Add to Cart</Button>
+        <Button className="bg-green-700" onClick={()=>addProductToCart({id,title, price, image})}>Add to Cart</Button>
         <Link to={`/product/${id}`} className="text-green-700">See more..</Link>
       </div>
     </Card>

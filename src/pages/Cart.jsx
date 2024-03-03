@@ -1,7 +1,19 @@
 
 
 export default function Cart() {
+
   return (
-    <div>Cart</div>
+    <div>
+      <div>
+           {/* left */}
+           <div>
+              
+           </div>
+           {/* right */}
+           <div>
+
+           </div>
+      </div>
+    </div>
   )
 }
