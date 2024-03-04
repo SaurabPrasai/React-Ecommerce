@@ -29,13 +29,33 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const cartProducts = state.products.filter(
-        (product) => product != action.payload
+        (product) => product.id != action.payload
       );
       state.products = cartProducts;
     },
+    incrementCountInCart:(state,action)=>{
+      const cart = [...state.products];
+      // index of existing product in cart
+      const findIndex = cart.findIndex(
+        (product) => product.id === action.payload
+      );
+      cart[findIndex].count += 1;
+      state.products = [...cart];
+      console.log(state.products);
+    },
+    decrementCountInCart:(state,action)=>{
+      const cart = [...state.products];
+      // index of existing product in cart
+      const findIndex = cart.findIndex(
+        (product) => product.id === action.payload
+      );
+      cart[findIndex].count -= 1;
+      state.products = [...cart];
+      console.log(state.products);
+    }
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart,incrementCountInCart,decrementCountInCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

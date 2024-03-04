@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function EmptyCart() {
   return (
-    <Card className="max-w-4xl flex flex-col justify-center items-center mx-auto mt-5">
+    <Card className="w-2/3 flex flex-col justify-center items-center mx-auto mt-5">
       <img
         src="https://rukminim2.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
         alt=""
