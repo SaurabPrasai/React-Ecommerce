@@ -3,9 +3,11 @@ import EmptyCart from "../components/EmptyCart";
 import { Button, Card } from "flowbite-react";
 import CartItem from "../components/CartItem";
 import CartPriceDetails from "../components/CartPriceDetails";
+import { useState } from "react";
 
 export default function Cart() {
   const cartProduct = useSelector((state) => state.cart.products);
+  const [trigger,setTrigger]=useState(0);
 
   return (
     <div className="m-5 flex flex-row justify-center">
@@ -25,6 +27,7 @@ export default function Cart() {
                     price={product.price}
                     count={product.count}
                      id={product.id}
+                     setTrigger={setTrigger}
                   />
                 ))}
               </div>
@@ -35,7 +38,7 @@ export default function Cart() {
           </div>
           {/* right */}
           <div className="">
-                    <CartPriceDetails/>
+                    <CartPriceDetails trigger={trigger}/>
           </div>
         </div>
       )}

@@ -41,7 +41,6 @@ export const cartSlice = createSlice({
       );
       cart[findIndex].count += 1;
       state.products = [...cart];
-      console.log(state.products);
     },
     decrementCountInCart:(state,action)=>{
       const cart = [...state.products];
@@ -51,7 +50,6 @@ export const cartSlice = createSlice({
       );
       cart[findIndex].count -= 1;
       state.products = [...cart];
-      console.log(state.products);
     }
   },
 });

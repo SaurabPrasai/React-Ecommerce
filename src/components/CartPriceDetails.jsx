@@ -1,21 +1,28 @@
 import { Card } from "flowbite-react";
 import { useEffect, useReducer, useState } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-export default function CartPriceDetails() {
+export default function CartPriceDetails({trigger}) {
+  const cartProduct = useSelector((state) => state.cart.products);
+  const [price, setPrice] = useState(null);
+  const [discount, SetDiscount] = useState(null);
 
-const cartProduct=useSelector(state=>state.cart.products)
-const [price,setPrice]=useState(null)
-const [discount,SetDiscount]=useState(null)
+//   console.log(cartProduct);
 
+  useEffect(() => {  
+    let totalPrice=0
+    const calculateTotalPrice=()=>{
+        cartProduct.map((product)=>{
+             totalPrice=totalPrice+product.price*product.count;   
+        })
+        const discountPrice = (10 / 100) * totalPrice;
+        setPrice(totalPrice.toFixed(2));
+        SetDiscount(discountPrice.toFixed(2));
+    }
+  calculateTotalPrice();
+  }, [cartProduct]);
 
-
-useEffect(()=>{
- const totalPrice=cartProduct.reduce((acc,obj)=>acc+obj.price,0)
- const discountPrice=10/100*totalPrice;
-setPrice(totalPrice)
-SetDiscount(discountPrice.toFixed(2))
-},[cartProduct])
+//   console.log(price);
 
   return (
     <Card>
@@ -35,7 +42,7 @@ SetDiscount(discountPrice.toFixed(2))
         </div>
         <div className="border-y-2 py-2 flex flex-row gap-x-20 justify-between">
           <p>Total Amount</p>
-          <span>${price-discount+10}</span>
+          <span>${(price - discount + 10).toFixed(2)}</span>
         </div>
       </div>
     </Card>
