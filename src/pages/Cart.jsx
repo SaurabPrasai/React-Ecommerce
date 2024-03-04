@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import EmptyCart from "../components/EmptyCart";
 
 
 export default function Cart() {
@@ -9,6 +10,10 @@ export default function Cart() {
 
   return (
     <div>
+      
+      {
+        cartProduct.length==0 && <EmptyCart/>
+      }
       <div>
            {/* left */}
            <div>
