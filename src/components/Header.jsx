@@ -1,10 +1,24 @@
-import { Button, Navbar, TextInput } from "flowbite-react";
+import { Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
-import { FaMoon } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useContext, useEffect, useState } from "react";
+import { productContext } from "../../context/ProductContextProvider";
 
 export default function Header() {
   const path = useLocation().pathname;
+  const { setProducts, products,allProducts } = useContext(productContext);
+  const [searchProduct, setSearchProduct] = useState(null);
+
+const filteredProduct=(e)=>{
+  setSearchProduct(e.target.value)
+  if(!searchProduct){
+    return setProducts(products)
+  }
+  const items = allProducts.filter((item) =>
+  item.title.toLowerCase().includes(searchProduct.toLowerCase())
+);
+setProducts(items)
+}
   return (
     <Navbar className="border-b-2 px-3">
       {/* Logo */}
@@ -19,6 +33,7 @@ export default function Header() {
           placeholder="Search Product..."
           icon={AiOutlineSearch}
           className="hidden lg:block"
+          onChange={(e) =>filteredProduct(e) }
         />
       </div>
       {/* hamburger */}
